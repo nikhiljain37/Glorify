@@ -1,9 +1,23 @@
-import { auth, authMiddleware } from "@clerk/nextjs/server";
+import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
 
-export default authMiddleware({
-  publicRoutes: ['/api/webhooks/clerk']
+
+const isProtectedRoute = createRouteMatcher([
+  '/api/webhooks/clerk',
+  // '/forum(.*)',
+]);
+
+export default clerkMiddleware((auth, req) => {
+  if (isProtectedRoute(req)) auth().protect();
 });
 
+
+// export default clerkMiddleware({
+//   // publicRoutes: ['/api/webhooks/clerk']
+// })
+
+
 export const config = {
-  matcher: ["/((?!.*\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+  // The following matcher runs middleware on all routes
+  // except static assets.
+  matcher: [ '/((?!.*\\..*|_next).*)', '/', '/(api|trpc)(.*)'],
 };
