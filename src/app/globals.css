@@ -224,7 +224,7 @@
   }
 
   .home-heading {
-    @apply h1-semibold max-w-[500px] flex-wrap text-center text-white shadow-sm;
+    @apply h1-semibold max-w-[500px] flex-wrap text-center text-gray-200 shadow-sm;
   }
 
   /* Credits Page */
@@ -372,5 +372,5 @@
 .cl-userButtonOuterIdentifier {
   font-size: 16px;
   font-weight: 600;
-  color: #384262;
+  color: #101111;
 }
